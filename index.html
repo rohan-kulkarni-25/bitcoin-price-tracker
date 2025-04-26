@@ -58,7 +58,7 @@
     </div>
 
     <footer>
-        Refreshes every 5 seconds • Powered by CoinGecko API
+        Powered by CoinGecko API
     </footer>
 
     <script>
@@ -75,9 +75,6 @@
                 document.getElementById("btc-price").textContent = 'Error fetching price';
             }
         }
-
-        // Fetch the price every 5 seconds
-        setInterval(getBitcoinPrice, 5000);
 
         // Initial fetch when the page loads
         getBitcoinPrice();
