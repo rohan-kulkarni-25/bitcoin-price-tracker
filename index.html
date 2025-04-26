@@ -3,20 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bitcoin Price</title>
+    <title>Bitcoin Price Tracker</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #1E212D, #4E5D6C);
+            color: #FFFFFF;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            overflow: hidden;
             text-align: center;
-            margin-top: 50px;
         }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
         .price-container {
-            margin-top: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
         }
+
         .price {
-            font-size: 1.5rem;
+            font-size: 2rem;
             font-weight: bold;
-            color: #4CAF50;
+            color: #FFD700;
+        }
+
+        footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            padding: 10px;
+            text-align: center;
+            font-size: 0.9rem;
+            background: rgba(0, 0, 0, 0.5);
+            color: #ddd;
         }
     </style>
 </head>
@@ -25,6 +55,10 @@
     <div class="price-container">
         Current Bitcoin Price: <span id="btc-price" class="price">Loading...</span>
     </div>
+
+    <footer>
+        Refreshes every 5 seconds • Powered by CoinGecko API
+    </footer>
 
     <script>
         // Function to fetch Bitcoin price
@@ -41,7 +75,10 @@
             }
         }
 
-        // Fetch the price when the page loads
+        // Fetch the price every 5 seconds
+        setInterval(getBitcoinPrice, 5000);
+
+        // Initial fetch when the page loads
         getBitcoinPrice();
     </script>
 </body>
