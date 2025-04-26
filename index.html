@@ -58,18 +58,18 @@
     </div>
 
     <footer>
-        Powered by CoinGecko API
+        Powered by Binance API
     </footer>
 
     <script>
-        // Function to fetch Bitcoin price
+        // Function to fetch Bitcoin price from Binance API
         async function getBitcoinPrice() {
             try {
-                const response = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd');
+                const response = await fetch('https://api.binance.com/api/v3/ticker/price?symbol=BTCUSDT');
                 const data = await response.json();
                 
                 // Update the price on the webpage
-                document.getElementById("btc-price").textContent = `$${data.bitcoin.usd}`;
+                document.getElementById("btc-price").textContent = `$${parseFloat(data.price).toFixed(2)}`;
             } catch (error) {
                 console.error('Error fetching Bitcoin price:', error);
                 document.getElementById("btc-price").textContent = 'Error fetching price';
