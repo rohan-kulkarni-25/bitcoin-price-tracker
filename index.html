@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bitcoin Price</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .price-container {
+            margin-top: 20px;
+        }
+        .price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #4CAF50;
+        }
+    </style>
+</head>
+<body>
+    <h1>Bitcoin Price Tracker</h1>
+    <div class="price-container">
+        Current Bitcoin Price: <span id="btc-price" class="price">Loading...</span>
+    </div>
+
+    <script>
+        // Function to fetch Bitcoin price
+        async function getBitcoinPrice() {
+            try {
+                const response = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd');
+                const data = await response.json();
+                
+                // Update the price on the webpage
+                document.getElementById("btc-price").textContent = `$${data.bitcoin.usd}`;
+            } catch (error) {
+                console.error('Error fetching Bitcoin price:', error);
+                document.getElementById("btc-price").textContent = 'Error fetching price';
+            }
+        }
+
+        // Fetch the price when the page loads
+        getBitcoinPrice();
+    </script>
+</body>
+</html>
